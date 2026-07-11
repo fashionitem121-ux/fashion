@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product — Fashion.Items</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700;800&family=Hind+Siliguri:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '3463779380454816');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=3463779380454816&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+<div class="wrap">
+
+  <div class="announce">
+    <div class="announce-track">
+      <span>✓ CASH ON DELIVERY ACROSS BANGLADESH</span>
+      <span>✓ VERIFIED SHOP — REAL PRODUCT PHOTOS</span>
+      <span>✓ FAST NATIONWIDE DELIVERY</span>
+      <span>✓ EASY EXCHANGE ON DAMAGED ITEMS</span>
+      <span>✓ CASH ON DELIVERY ACROSS BANGLADESH</span>
+      <span>✓ VERIFIED SHOP — REAL PRODUCT PHOTOS</span>
+      <span>✓ FAST NATIONWIDE DELIVERY</span>
+      <span>✓ EASY EXCHANGE ON DAMAGED ITEMS</span>
+    </div>
+  </div>
+
+  <nav class="topnav">
+    <div class="logo">Fashion<span>.</span>Items</div>
+  </nav>
+
+  <a href="index.html" class="back-link">← Back to all products</a>
+
+  <div class="product-name-row">
+    <h1 id="pName">Loading...</h1>
+    <div class="stars" id="pStars"></div>
+  </div>
+
+  <!-- 2x2 layout matching the sketch:
+       top-left = images, top-right = price/buy,
+       bottom-left = description, bottom-right = reviews -->
+  <div class="product-layout">
+
+    <!-- TOP LEFT: product images -->
+    <div class="pcell">
+      <div class="pcell-title">Product Images</div>
+      <div class="gallery-row">
+        <button class="arrow-btn" id="prevBtn" aria-label="Previous image">←</button>
+        <div class="carousel">
+          <div class="carousel-track" id="carouselTrack"></div>
+        </div>
+        <button class="arrow-btn" id="nextBtn" aria-label="Next image">→</button>
+      </div>
+      <div class="dots" id="dots"></div>
+    </div>
+
+    <!-- TOP RIGHT: price and buy option -->
+    <div class="pcell">
+      <div class="pcell-title">Price &amp; Buy Option</div>
+      <div class="price-buy-block">
+        <span class="pb-discount-tag" id="discountTag" style="display:none;"></span>
+        <div class="pb-price-row">
+          <div class="pb-price" id="pbPrice">৳0</div>
+          <div class="pb-strike" id="pbStrike"></div>
+        </div>
+        <div class="pb-stock" id="pbStock">✓ In Stock</div>
+        <button class="buy-btn" id="buyBtn">Buy Now</button>
+        <div class="buy-note">🛠 Order form launching soon — this button isn't wired up yet</div>
+      </div>
+    </div>
+
+    <!-- BOTTOM LEFT: product description -->
+    <div class="pcell">
+      <div class="pcell-title">Product Description</div>
+      <div id="descBox"></div>
+    </div>
+
+    <!-- BOTTOM RIGHT: real customer reviews -->
+    <div class="pcell">
+      <div class="pcell-title">Real Customer Reviews</div>
+      <div id="reviewBox"></div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-name">Fashion<span>.</span>Items</div>
+      <div class="social-row">
+        <a href="#" title="Facebook">📘</a>
+        <a href="#" title="Instagram">📷</a>
+        <a href="#" title="TikTok">🎵</a>
+      </div>
+      <div class="footer-line">💬 <b>24/7 Support on WhatsApp:</b> +880 1540-663054</div>
+      <div class="footer-line">📍 <b>Shop Location:</b> Sylhet, Zindabazar, Sylhet, Bangladesh</div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="products-data.js"></script>
+<script src="product.js"></script>
+</body>
+</html>
