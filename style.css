@@ -87,7 +87,8 @@ a{color:inherit; text-decoration:none;}
 .card .cprice{ font-family:'Anton',sans-serif; color:var(--pink); font-size:16px; }
 .view-btn{
   margin-top:auto; display:block; text-align:center; background:var(--text); color:#fff;
-  font-size:11.5px; font-weight:700; padding:9px; border-radius:8px; text-transform:uppercase; letter-spacing:0.03em;
+  font-size:11.5px; font-weight:700; padding:12px 9px; border-radius:8px; text-transform:uppercase; letter-spacing:0.03em;
+  min-height:44px; display:flex; align-items:center; justify-content:center;
 }
 
 /* FOOTER */
@@ -102,3 +103,16 @@ footer{ margin-top:36px; border-top:1px solid var(--line); padding:30px 20px 40p
 }
 .footer-line{ font-size:12.5px; color:var(--muted); }
 .footer-line b{ color:var(--text); }
+
+/* ===== Small phone refinements (under ~380px width) ===== */
+@media (max-width:380px){
+  .header{ padding:20px 16px; gap:10px; }
+  .store-name{ font-size:22px; }
+  .discount-badge{ width:80px; height:80px; }
+  .discount-badge .pct{ font-size:20px; }
+  .discount-badge .off{ font-size:9px; }
+  .cd-box{ min-width:44px; padding:6px 6px; }
+  .cd-box .val{ font-size:15px; }
+  .section-title{ font-size:17px; }
+  .card .cname{ font-size:11.5px; min-height:28px; }
+}
