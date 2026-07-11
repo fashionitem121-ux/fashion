@@ -46,16 +46,20 @@ function renderProductGrid(){
       ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;">`
       : `🛍️`;
 
+    const priceHTML = p.discountPercent
+      ? `<span class="cprice">৳${p.price}</span> <span class="strike">৳${p.originalPrice}</span>`
+      : `<span class="cprice">${p.price > 0 ? '৳' + p.price : 'Price coming soon'}</span>`;
+
     card.innerHTML = `
       <div class="img-box">
-        ${p.topSale ? '<span class="badge-top">Top Sale</span>' : ''}
+        ${p.discountPercent ? `<span class="badge-discount">${p.discountPercent}% OFF</span>` : (p.topSale ? '<span class="badge-top">Top Sale</span>' : '')}
         <span class="badge-stock">${p.inStock ? 'In Stock' : 'Out of Stock'}</span>
         ${imageContent}
       </div>
       <div class="cbody">
         <div class="cname">${p.name}</div>
         <div class="stars">${starString(p.rating)} <span class="count">(${p.reviews})</span></div>
-        <div class="cprice">${p.price > 0 ? '৳' + p.price : 'Price coming soon'}</div>
+        <div class="price-row">${priceHTML}</div>
         <a class="view-btn" href="product.html?id=${p.id}">View Product</a>
       </div>
     `;
