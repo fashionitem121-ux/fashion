@@ -87,7 +87,6 @@ src="https://www.facebook.com/tr?id=3463779380454816&ev=PageView&noscript=1"
           <div class="colour-options" id="colourOptions"></div>
         </div>
         <button class="buy-btn" id="buyBtn">Buy Now</button>
-        <div class="buy-note">🛠 Order form launching soon — this button isn't wired up yet</div>
       </div>
     </div>
 
@@ -118,6 +117,59 @@ src="https://www.facebook.com/tr?id=3463779380454816&ev=PageView&noscript=1"
     </div>
   </footer>
 
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+
+    <div id="modalFormView">
+      <div class="modal-title">Complete Your Order</div>
+      <div class="modal-product-line" id="modalProductLine"></div>
+
+      <label class="field-label">Quantity</label>
+      <div class="qty-row">
+        <button type="button" class="qty-btn" id="qtyMinus">−</button>
+        <div class="qty-val" id="qtyVal">1</div>
+        <button type="button" class="qty-btn" id="qtyPlus">+</button>
+      </div>
+
+      <label class="field-label">Name</label>
+      <input type="text" id="fName" placeholder="Your full name">
+
+      <label class="field-label">Phone</label>
+      <input type="tel" id="fPhone" placeholder="01XXXXXXXXX">
+
+      <label class="field-label">City</label>
+      <input type="text" id="fCity" placeholder="e.g. Sylhet, Dhaka, Chattogram">
+
+      <label class="field-label">Address</label>
+      <textarea id="fAddress" placeholder="House, road, area"></textarea>
+
+      <label class="field-label">Discount Coupon <span class="optional-tag">(optional)</span></label>
+      <input type="text" id="fCoupon" placeholder="Enter code if you have one">
+
+      <div class="modal-total-row">
+        <span>Total</span>
+        <span id="modalTotal">৳0</span>
+      </div>
+
+      <div class="error-msg" id="errorMsg">Please fill in your name, phone, city, and address.</div>
+
+      <button class="cta-btn" id="submitOrderBtn">Confirm Order</button>
+    </div>
+
+    <div id="modalThankYouView" style="display:none;">
+      <div class="thankyou-box">
+        <div class="thankyou-icon">✅</div>
+        <div class="thankyou-title">Thank you!</div>
+        <div class="thankyou-text">We've received your order. We'll call you shortly to confirm before shipping.</div>
+        <button class="cta-btn" id="closeThankYouBtn">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <script src="products-data.js"></script>
