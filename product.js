@@ -171,6 +171,7 @@ document.getElementById('submitOrderBtn').addEventListener('click', async () => 
     }]
   };
 
+  let sheetSaveFailed = false;
   try{
     await fetch(ORDER_SHEET_URL, {
       method: 'POST',
@@ -178,17 +179,27 @@ document.getElementById('submitOrderBtn').addEventListener('click', async () => 
       body: JSON.stringify(payload)
     });
   } catch(err){
-    console.error('Order failed to save:', err);
+    // This only catches genuine failures (e.g. no internet connection at all) —
+    // sheetSaveFailed tells the thank-you view to be honest about it.
+    console.error('Order failed to save to Sheet:', err);
+    sheetSaveFailed = true;
   }
 
-  // Track this as a Lead in the Pixel regardless of the sheet write outcome above,
-  // since the visitor's intent to buy is what matters for ad optimisation.
+  // Track this as a Lead in the Pixel — the visitor showed real buying intent
+  // by completing the form, regardless of the sheet write outcome above.
   if(typeof fbq === 'function'){ fbq('track', 'Lead'); }
 
   submitBtn.disabled = false;
   submitBtn.textContent = 'Confirm Order';
   document.getElementById('modalFormView').style.display = 'none';
   document.getElementById('modalThankYouView').style.display = 'block';
+
+  const thankYouText = document.querySelector('.thankyou-text');
+  if(sheetSaveFailed){
+    thankYouText.textContent = "We couldn't confirm your order saved — please message us directly on WhatsApp or Facebook to be safe, and we'll sort it out right away.";
+  } else {
+    thankYouText.textContent = "We've received your order. We'll call you shortly to confirm before shipping.";
+  }
 
   // reset fields for next time
   document.getElementById('fName').value = '';
