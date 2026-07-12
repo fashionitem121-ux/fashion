@@ -19,30 +19,36 @@ document.getElementById('pName').textContent = product.name;
 document.getElementById('pStars').innerHTML =
   `${starString(product.rating)} <span class="count">${product.rating} (${product.reviews} ratings)</span>`;
 
-// ---- Gallery (top-left) ----
+// ---- Gallery (top-left) — rebuildable so colour selection can swap photos ----
 const track = document.getElementById('carouselTrack');
 const dotsWrap = document.getElementById('dots');
-
-// Use real images if provided, otherwise show numbered placeholder slots
-// so it's obvious where photos need to go (minimum 4, per the page design).
-const galleryImages = (product.images && product.images.length > 0)
-  ? product.images
-  : [1,2,3,4].map(n => null);
-
-galleryImages.forEach((src, i) => {
-  const slide = document.createElement('div');
-  slide.className = 'slide';
-  slide.innerHTML = src ? `<img src="${src}" alt="${product.name} photo ${i+1}">` : `🖼️ Photo ${i+1}`;
-  track.appendChild(slide);
-
-  const dot = document.createElement('div');
-  dot.className = 'dot' + (i===0 ? ' active':'');
-  dot.addEventListener('click', () => goTo(i));
-  dotsWrap.appendChild(dot);
-});
-
-const totalSlides = galleryImages.length;
+let totalSlides = 0;
 let current = 0;
+
+function buildGallery(images){
+  track.innerHTML = '';
+  dotsWrap.innerHTML = '';
+  current = 0;
+
+  // Use real images if provided, otherwise show numbered placeholder slots
+  // so it's obvious where photos need to go (minimum 4, per the page design).
+  const slidesData = (images && images.length > 0) ? images : [1,2,3,4].map(() => null);
+  totalSlides = slidesData.length;
+
+  slidesData.forEach((src, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'slide';
+    slide.innerHTML = src ? `<img src="${src}" alt="${product.name} photo ${i+1}">` : `🖼️ Photo ${i+1}`;
+    track.appendChild(slide);
+
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i===0 ? ' active':'');
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+  track.style.transform = `translateX(0%)`;
+}
+
 function goTo(i){
   current = (i + totalSlides) % totalSlides;
   track.style.transform = `translateX(-${current * 100}%)`;
@@ -59,6 +65,30 @@ carousel.addEventListener('touchend', e => {
   if(diff > 40) goTo(current-1);
   else if(diff < -40) goTo(current+1);
 }, {passive:true});
+
+buildGallery(product.images);
+
+// ---- Colour picker ----
+let selectedColour = null;
+if(product.colours && product.colours.length > 0){
+  document.getElementById('colourBlock').style.display = 'block';
+  const colourOptions = document.getElementById('colourOptions');
+
+  product.colours.forEach((c, i) => {
+    const opt = document.createElement('div');
+    opt.className = 'colour-opt' + (i===0 ? ' active' : '');
+    opt.innerHTML = `<div class="colour-swatch" style="background:${c.hex};"></div><div class="cname">${c.name}</div>`;
+    opt.addEventListener('click', () => {
+      [...colourOptions.children].forEach(el => el.classList.remove('active'));
+      opt.classList.add('active');
+      selectedColour = c.name;
+      // Swap gallery to this colour's photos if it has any, else fall back to default images
+      buildGallery(c.images && c.images.length > 0 ? c.images : product.images);
+    });
+    colourOptions.appendChild(opt);
+  });
+  selectedColour = product.colours[0].name;
+}
 
 // ---- Price & buy (top-right) ----
 document.getElementById('pbPrice').textContent = product.price > 0 ? `৳${product.price}` : 'Price coming soon';
