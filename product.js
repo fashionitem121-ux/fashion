@@ -100,10 +100,102 @@ if(product.discountPercent){
 }
 document.getElementById('pbStock').textContent = product.inStock ? '✓ In Stock' : '✕ Out of Stock';
 
-// Buy button placeholder — intentionally not wired to an order flow yet.
-// Next step: connect this to the WhatsApp + Google Sheet + Pixel "Lead" flow.
+// ---- Buy Now → order modal ----
+const ORDER_SHEET_URL = "https://script.google.com/macros/s/AKfycbyKtIQQ1b1LJ07dvBaWiBFNk9SAYrYku8sh3xUUi1bbUP0W-fwM8-YxKckIWAGobweB/exec";
+
+let qty = 1;
+const qtyValEl = document.getElementById('qtyVal');
+
+function updateModalTotal(){
+  document.getElementById('modalTotal').textContent = `৳${product.price * qty}`;
+}
+
+document.getElementById('qtyMinus').addEventListener('click', () => {
+  qty = Math.max(1, qty - 1);
+  qtyValEl.textContent = qty;
+  updateModalTotal();
+});
+document.getElementById('qtyPlus').addEventListener('click', () => {
+  qty = qty + 1;
+  qtyValEl.textContent = qty;
+  updateModalTotal();
+});
+
+const modalOverlay = document.getElementById('modalOverlay');
+
 document.getElementById('buyBtn').addEventListener('click', () => {
-  alert("Ordering isn't set up on this page yet — coming in the next step!");
+  qty = 1;
+  qtyValEl.textContent = qty;
+  document.getElementById('modalProductLine').textContent =
+    product.name + (selectedColour ? ` — ${selectedColour}` : '');
+  updateModalTotal();
+  document.getElementById('modalFormView').style.display = 'block';
+  document.getElementById('modalThankYouView').style.display = 'none';
+  document.getElementById('errorMsg').style.display = 'none';
+  modalOverlay.classList.add('open');
+});
+
+function closeModal(){ modalOverlay.classList.remove('open'); }
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modalOverlay.addEventListener('click', (e) => { if(e.target === modalOverlay) closeModal(); });
+document.getElementById('closeThankYouBtn').addEventListener('click', closeModal);
+
+document.getElementById('submitOrderBtn').addEventListener('click', async () => {
+  const name = document.getElementById('fName').value.trim();
+  const phone = document.getElementById('fPhone').value.trim();
+  const city = document.getElementById('fCity').value.trim();
+  const address = document.getElementById('fAddress').value.trim();
+  const coupon = document.getElementById('fCoupon').value.trim(); // captured now; coupon logic/discount comes later
+  const errorMsg = document.getElementById('errorMsg');
+  const submitBtn = document.getElementById('submitOrderBtn');
+
+  if(!name || !phone || !city || !address){
+    errorMsg.style.display = 'block';
+    return;
+  }
+  errorMsg.style.display = 'none';
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Placing Order...';
+
+  const payload = {
+    name: name,
+    phone: phone,
+    city: city,
+    address: address,
+    coupon: coupon,
+    items: [{
+      product: product.name,
+      colour: selectedColour || 'N/A',
+      quantity: qty,
+      price: product.price
+    }]
+  };
+
+  try{
+    await fetch(ORDER_SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors', // Apps Script doesn't send CORS headers back; this still delivers the write
+      body: JSON.stringify(payload)
+    });
+  } catch(err){
+    console.error('Order failed to save:', err);
+  }
+
+  // Track this as a Lead in the Pixel regardless of the sheet write outcome above,
+  // since the visitor's intent to buy is what matters for ad optimisation.
+  if(typeof fbq === 'function'){ fbq('track', 'Lead'); }
+
+  submitBtn.disabled = false;
+  submitBtn.textContent = 'Confirm Order';
+  document.getElementById('modalFormView').style.display = 'none';
+  document.getElementById('modalThankYouView').style.display = 'block';
+
+  // reset fields for next time
+  document.getElementById('fName').value = '';
+  document.getElementById('fPhone').value = '';
+  document.getElementById('fCity').value = '';
+  document.getElementById('fAddress').value = '';
+  document.getElementById('fCoupon').value = '';
 });
 
 // ---- Description (bottom-left) ----
