@@ -22,20 +22,35 @@
 
 const PRODUCTS = [
   {
-    id: "p1", name: "Product Name 1", price: 440, originalPrice: 800, discountPercent: 45,
-    rating: 4.5, reviews: 12, topSale: true, inStock: true, image: "",
-    images: [], // default/shared gallery — used if a colour has no images of its own
+    id: "p1",
+    name: "Trendy Korean Long Wallet",
+    price: 599,
+    originalPrice: 1090,
+    discountPercent: 45,
+    rating: 4.5,
+    reviews: 12,
+    topSale: true,
+    inStock: true,
+    image: "", 
+    images: [
+      "Screenshot_20260717_202504_skybuy_becommerce_com_bd_MainActivity_edit_217243001606793.jpg",
+      "Screenshot_20260717_202523_skybuy_becommerce_com_bd_MainActivity_edit_217262315701872.jpg",
+      "Screenshot_20260717_202538_skybuy_becommerce_com_bd_MainActivity_edit_217279822816949.jpg",
+      "Screenshot_20260717_203003_skybuy_becommerce_com_bd_MainActivity.jpg",
+      "Screenshot_20260717_203020_skybuy_becommerce_com_bd_MainActivity.jpg",
+      "Screenshot_20260717_203037_skybuy_becommerce_com_bd_MainActivity.jpg"
+    ], // default/shared gallery — used if a colour has no images of its own
     colours: [
-      { name: "Colour 1", hex: "#F0B6C6", images: [] }, // add this colour's photos here
-      { name: "Colour 2", hex: "#B7C4A6", images: [] }  // add this colour's photos here
+      { name: "Pink", hex: "#F0B6C6", images: [] }, 
+      { name: "Light Green", hex: "#B7C4A6", images: [] }  
     ],
     description: [
-      { icon: "🧵", label: "Material", text: "Add material details here" },
-      { icon: "📏", label: "Size", text: "Add dimensions here" },
-      { icon: "✨", label: "Features", text: "Add key features here" },
-      { icon: "🎁", label: "Best for", text: "Add who it's best suited for here" }
+      { icon: "🧵", label: "Material", text: "Premium PU Leather / Durable Stitching" },
+      { icon: "📏", label: "Size", text: "Long clutch design, perfect for cards and cash" },
+      { icon: "✨", label: "Features", text: "Multi-slot card organizer, elegant Korean fashion style" },
+      { icon: "🎁", label: "Best for", text: "Women, students, and everyday trendy use" }
     ],
-    reviews: [] // add real reviews as { name, rating, text, image } once available
+    reviews: [] 
   },
   { id: "p2", name: "Product Name 2", price: 0, rating: 4.2, reviews: 8,  topSale: true,  inStock: true, image: "", images: [], colours: [], description: [], reviews: [] },
   { id: "p3", name: "Product Name 3", price: 0, rating: 4.8, reviews: 21, topSale: false, inStock: true, image: "", images: [], colours: [], description: [], reviews: [] },
