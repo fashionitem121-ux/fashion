@@ -102,56 +102,64 @@ const PRODUCTS = [
   },
   {
     id: "p5",
-    name: "Product Name 5",
-    price: 0,
+    name: "Premium Fashion Item 5",
+    price: 450,
     rating: 4.6,
     reviews: 14,
     topSale: false,
     inStock: true,
-    image: "",
-    images: [],
+    image: "Screenshot_20260718_003808_skybuy_becommerce_com_bd_MainActivity_edit_230643198054669.jpg",
+    images: [
+      "Screenshot_20260718_003808_skybuy_becommerce_com_bd_MainActivity_edit_230643198054669.jpg"
+    ],
     colours: [],
     description: [],
     reviews: []
   },
   {
     id: "p6",
-    name: "Product Name 6",
-    price: 0,
+    name: "Premium Fashion Item 6",
+    price: 520,
     rating: 4.3,
     reviews: 9,
     topSale: false,
     inStock: true,
-    image: "",
-    images: [],
+    image: "Screenshot_20260718_003739_skybuy_becommerce_com_bd_MainActivity_edit_230607704237821.jpg",
+    images: [
+      "Screenshot_20260718_003739_skybuy_becommerce_com_bd_MainActivity_edit_230607704237821.jpg"
+    ],
     colours: [],
     description: [],
     reviews: []
   },
   {
     id: "p7",
-    name: "Product Name 7",
-    price: 0,
+    name: "Premium Fashion Item 7",
+    price: 680,
     rating: 4.7,
     reviews: 17,
     topSale: false,
     inStock: true,
-    image: "",
-    images: [],
+    image: "Screenshot_20260718_003657_skybuy_becommerce_com_bd_MainActivity_edit_230583500932512.jpg",
+    images: [
+      "Screenshot_20260718_003657_skybuy_becommerce_com_bd_MainActivity_edit_230583500932512.jpg"
+    ],
     colours: [],
     description: [],
     reviews: []
   },
   {
     id: "p8",
-    name: "Product Name 8",
-    price: 0,
+    name: "Premium Fashion Item 8",
+    price: 390,
     rating: 4.1,
     reviews: 6,
     topSale: false,
     inStock: true,
-    image: "",
-    images: [],
+    image: "Screenshot_20260718_003624_skybuy_becommerce_com_bd_MainActivity_edit_230560730158049.jpg",
+    images: [
+      "Screenshot_20260718_003624_skybuy_becommerce_com_bd_MainActivity_edit_230560730158049.jpg"
+    ],
     colours: [],
     description: [],
     reviews: []
