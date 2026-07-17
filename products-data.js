@@ -31,7 +31,7 @@ const PRODUCTS = [
     reviews: 12,
     topSale: true,
     inStock: true,
-    image: "", 
+    image: "Screenshot_20260717_202504_skybuy_becommerce_com_bd_MainActivity_edit_217243001606793.jpg", 
     images: [
       "Screenshot_20260717_202504_skybuy_becommerce_com_bd_MainActivity_edit_217243001606793.jpg",
       "Screenshot_20260717_202523_skybuy_becommerce_com_bd_MainActivity_edit_217262315701872.jpg",
