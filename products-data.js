@@ -1,4 +1,4 @@
-// ===== Fashion Items — product data =====
+// ===== Fashion Items — product data ===== //
 // This file feeds the homepage grid AND the product page.
 // To add a real product later: replace the placeholder fields below,
 // or duplicate an object in this array for a brand-new product.
@@ -31,7 +31,7 @@ const PRODUCTS = [
     reviews: 12,
     topSale: true,
     inStock: true,
-    image: "Screenshot_20260717_202504_skybuy_becommerce_com_bd_MainActivity_edit_217243001606793.jpg", 
+    image: "Screenshot_20260717_202504_skybuy_becommerce_com_bd_MainActivity_edit_217243001606793.jpg",
     images: [
       "Screenshot_20260717_202504_skybuy_becommerce_com_bd_MainActivity_edit_217243001606793.jpg",
       "Screenshot_20260717_202523_skybuy_becommerce_com_bd_MainActivity_edit_217262315701872.jpg",
@@ -41,8 +41,8 @@ const PRODUCTS = [
       "Screenshot_20260717_203037_skybuy_becommerce_com_bd_MainActivity.jpg"
     ], // default/shared gallery — used if a colour has no images of its own
     colours: [
-      { name: "Pink", hex: "#F0B6C6", images: [] }, 
-      { name: "Light Green", hex: "#B7C4A6", images: [] }  
+      { name: "Pink", hex: "#F0B6C6", images: [] },
+      { name: "Light Green", hex: "#B7C4A6", images: [] }
     ],
     description: [
       { icon: "🧵", label: "Material", text: "Premium PU Leather / Durable Stitching" },
@@ -50,13 +50,110 @@ const PRODUCTS = [
       { icon: "✨", label: "Features", text: "Multi-slot card organizer, elegant Korean fashion style" },
       { icon: "🎁", label: "Best for", text: "Women, students, and everyday trendy use" }
     ],
-    reviews: [] 
+    reviews: []
   },
-  { id: "p2", name: "Product Name 2", price: 0, rating: 4.2, reviews: 8,  topSale: true,  inStock: true, image: "", images: [], colours: [], description: [], reviews: [] },
-  { id: "p3", name: "Product Name 3", price: 0, rating: 4.8, reviews: 21, topSale: false, inStock: true, image: "", images: [], colours: [], description: [], reviews: [] },
-  { id: "p4", name: "Product Name 4", price: 0, rating: 4.0, reviews: 5,  topSale: false, inStock: true, image: "", images: [], colours: [], description: [], reviews: [] },
-  { id: "p5", name: "Product Name 5", price: 0, rating: 4.6, reviews: 14, topSale: false, inStock: true, image: "", images: [], colours: [], description: [], reviews: [] },
-  { id: "p6", name: "Product Name 6", price: 0, rating: 4.3, reviews: 9,  topSale: false, inStock: true, image: "", images: [], colours: [], description: [], reviews: [] },
-  { id: "p7", name: "Product Name 7", price: 0, rating: 4.7, reviews: 17, topSale: false, inStock: true, image: "", images: [], colours: [], description: [], reviews: [] },
-  { id: "p8", name: "Product Name 8", price: 0, rating: 4.1, reviews: 6,  topSale: false, inStock: true, image: "", images: [], colours: [], description: [], reviews: [] }
+  {
+    id: "p2",
+    name: "Premium Fashion Item 2",
+    price: 750,
+    rating: 4.2,
+    reviews: 8,
+    topSale: true,
+    inStock: true,
+    image: "Screenshot_20260718_000933_skybuy_becommerce_com_bd_MainActivity_edit_229075586583499.jpg",
+    images: [
+      "Screenshot_20260718_000933_skybuy_becommerce_com_bd_MainActivity_edit_229075586583499.jpg"
+    ],
+    colours: [],
+    description: [],
+    reviews: []
+  },
+  {
+    id: "p3",
+    name: "Premium Fashion Item 3",
+    price: 2999,
+    rating: 4.8,
+    reviews: 21,
+    topSale: false,
+    inStock: true,
+    image: "Screenshot_20260718_001100_skybuy_becommerce_com_bd_MainActivity_edit_229049832489651.jpg",
+    images: [
+      "Screenshot_20260718_001100_skybuy_becommerce_com_bd_MainActivity_edit_229049832489651.jpg"
+    ],
+    colours: [],
+    description: [],
+    reviews: []
+  },
+  {
+    id: "p4",
+    name: "Premium Fashion Item 4",
+    price: 5000,
+    rating: 4.0,
+    reviews: 5,
+    topSale: false,
+    inStock: true,
+    image: "Screenshot_20260718_001218_skybuy_becommerce_com_bd_MainActivity_edit_229026798921342.jpg",
+    images: [
+      "Screenshot_20260718_001218_skybuy_becommerce_com_bd_MainActivity_edit_229026798921342.jpg"
+    ],
+    colours: [],
+    description: [],
+    reviews: []
+  },
+  {
+    id: "p5",
+    name: "Product Name 5",
+    price: 0,
+    rating: 4.6,
+    reviews: 14,
+    topSale: false,
+    inStock: true,
+    image: "",
+    images: [],
+    colours: [],
+    description: [],
+    reviews: []
+  },
+  {
+    id: "p6",
+    name: "Product Name 6",
+    price: 0,
+    rating: 4.3,
+    reviews: 9,
+    topSale: false,
+    inStock: true,
+    image: "",
+    images: [],
+    colours: [],
+    description: [],
+    reviews: []
+  },
+  {
+    id: "p7",
+    name: "Product Name 7",
+    price: 0,
+    rating: 4.7,
+    reviews: 17,
+    topSale: false,
+    inStock: true,
+    image: "",
+    images: [],
+    colours: [],
+    description: [],
+    reviews: []
+  },
+  {
+    id: "p8",
+    name: "Product Name 8",
+    price: 0,
+    rating: 4.1,
+    reviews: 6,
+    topSale: false,
+    inStock: true,
+    image: "",
+    images: [],
+    colours: [],
+    description: [],
+    reviews: []
+  }
 ];
