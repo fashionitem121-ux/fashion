@@ -35,23 +35,8 @@ function starString(rating){
 
 // Which product IDs are actually ready to ship right now.
 // Add more IDs here later as you get real stock for other products —
-// everything NOT listed here shows as unavailable instead of a working buy button.
+// everything NOT listed here shows as "Coming Soon" instead of a working buy button.
 const AVAILABLE_PRODUCT_IDS = ["p1"];
-
-// Status + label for every other product. Using varied, honest wording
-// (instead of repeating "Coming Soon" on every card) so the grid doesn't
-// look monotonous — but none of these claim real stock that doesn't exist,
-// since that button underneath is a real, working order form.
-// status: "outofstock" (red-ish) or "comingsoon" (grey)
-const PRODUCT_STATUS = {
-  p2: { status: "outofstock", label: "Out of Stock" },
-  p3: { status: "comingsoon", label: "Coming Soon" },
-  p4: { status: "comingsoon", label: "Coming Soon" },
-  p5: { status: "comingsoon", label: "Launching Soon" },
-  p6: { status: "outofstock", label: "Out of Stock" },
-  p7: { status: "comingsoon", label: "Notify Me Soon" },
-  p8: { status: "comingsoon", label: "New Arrival Soon" }
-};
 
 // ---- Render the featured showcase banner ----
 function renderFeaturedProduct(){
@@ -85,9 +70,8 @@ function renderProductGrid(){
   const grid = document.getElementById('productGrid');
   if(!grid) return;
 
-  // Everything except the featured/available product(s) shows here as unavailable
+  // Everything except the featured/available product(s) shows here as "Coming Soon"
   PRODUCTS.filter(p => !AVAILABLE_PRODUCT_IDS.includes(p.id)).forEach(p => {
-    const info = PRODUCT_STATUS[p.id] || { status: "comingsoon", label: "Coming Soon" };
     const card = document.createElement('div');
     card.className = 'card coming-soon';
 
@@ -95,17 +79,15 @@ function renderProductGrid(){
       ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;">`
       : `🛍️`;
 
-    const badgeClass = info.status === 'outofstock' ? 'badge-outofstock' : 'badge-comingsoon';
-
     card.innerHTML = `
       <div class="img-box">
-        <span class="${badgeClass}">${info.label}</span>
+        <span class="badge-comingsoon">Coming Soon</span>
         ${imageContent}
       </div>
       <div class="cbody">
         <div class="cname">${p.name}</div>
         <div class="stars">${starString(p.rating)} <span class="count">(${p.reviews})</span></div>
-        <div class="price-row"><span class="cprice">${info.label}</span></div>
+        <div class="price-row"><span class="cprice">Coming Soon</span></div>
         <span class="view-btn disabled">Not Available Yet</span>
       </div>
     `;
