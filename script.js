@@ -33,38 +33,87 @@ function starString(rating){
   return '★'.repeat(full) + '☆'.repeat(5-full);
 }
 
+// Which product IDs are actually ready to ship right now.
+// Add more IDs here later as you get real stock for other products —
+// everything NOT listed here shows as unavailable instead of a working buy button.
+const AVAILABLE_PRODUCT_IDS = ["p1"];
+
+// Status + label for every other product. Using varied, honest wording
+// (instead of repeating "Coming Soon" on every card) so the grid doesn't
+// look monotonous — but none of these claim real stock that doesn't exist,
+// since that button underneath is a real, working order form.
+// status: "outofstock" (red-ish) or "comingsoon" (grey)
+const PRODUCT_STATUS = {
+  p2: { status: "outofstock", label: "Out of Stock" },
+  p3: { status: "comingsoon", label: "Coming Soon" },
+  p4: { status: "comingsoon", label: "Coming Soon" },
+  p5: { status: "comingsoon", label: "Launching Soon" },
+  p6: { status: "outofstock", label: "Out of Stock" },
+  p7: { status: "comingsoon", label: "Notify Me Soon" },
+  p8: { status: "comingsoon", label: "New Arrival Soon" }
+};
+
+// ---- Render the featured showcase banner ----
+function renderFeaturedProduct(){
+  const wrap = document.getElementById('featuredProduct');
+  if(!wrap) return;
+
+  const p = PRODUCTS.find(prod => AVAILABLE_PRODUCT_IDS.includes(prod.id));
+  if(!p) return;
+
+  const img = (p.images && p.images.length > 0) ? p.images[0] : p.image;
+
+  wrap.innerHTML = `
+    <a href="product.html?id=${p.id}" class="featured-card">
+      <span class="featured-ribbon">Featured</span>
+      ${img ? `<img class="featured-img" src="${img}" alt="${p.name}">` : ''}
+      <div class="featured-body">
+        <div class="featured-tag">✅ Ready to Ship</div>
+        <div class="featured-name">${p.name}</div>
+        <div class="featured-price-row">
+          <span class="featured-price">৳${p.price}</span>
+          ${p.discountPercent ? `<span class="featured-strike">৳${p.originalPrice}</span>` : ''}
+        </div>
+        <span class="featured-btn">Shop Now</span>
+      </div>
+    </a>
+  `;
+}
+
 // ---- Render product grid on homepage ----
 function renderProductGrid(){
   const grid = document.getElementById('productGrid');
   if(!grid) return;
 
-  PRODUCTS.forEach(p => {
+  // Everything except the featured/available product(s) shows here as unavailable
+  PRODUCTS.filter(p => !AVAILABLE_PRODUCT_IDS.includes(p.id)).forEach(p => {
+    const info = PRODUCT_STATUS[p.id] || { status: "comingsoon", label: "Coming Soon" };
     const card = document.createElement('div');
-    card.className = 'card';
+    card.className = 'card coming-soon';
 
     const imageContent = p.image
       ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;">`
       : `🛍️`;
 
-    const priceHTML = p.discountPercent
-      ? `<span class="cprice">৳${p.price}</span> <span class="strike">৳${p.originalPrice}</span>`
-      : `<span class="cprice">${p.price > 0 ? '৳' + p.price : 'Price coming soon'}</span>`;
+    const badgeClass = info.status === 'outofstock' ? 'badge-outofstock' : 'badge-comingsoon';
 
     card.innerHTML = `
       <div class="img-box">
-        ${p.discountPercent ? `<span class="badge-discount">${p.discountPercent}% OFF</span>` : (p.topSale ? '<span class="badge-top">Top Sale</span>' : '')}
-        <span class="badge-stock">${p.inStock ? 'In Stock' : 'Out of Stock'}</span>
+        <span class="${badgeClass}">${info.label}</span>
         ${imageContent}
       </div>
       <div class="cbody">
         <div class="cname">${p.name}</div>
         <div class="stars">${starString(p.rating)} <span class="count">(${p.reviews})</span></div>
-        <div class="price-row">${priceHTML}</div>
-        <a class="view-btn" href="product.html?id=${p.id}">View Product</a>
+        <div class="price-row"><span class="cprice">${info.label}</span></div>
+        <span class="view-btn disabled">Not Available Yet</span>
       </div>
     `;
     grid.appendChild(card);
   });
 }
 
-document.addEventListener('DOMContentLoaded', renderProductGrid);
+document.addEventListener('DOMContentLoaded', () => {
+  renderFeaturedProduct();
+  renderProductGrid();
+});
