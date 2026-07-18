@@ -33,17 +33,41 @@ function starString(rating){
   return '★'.repeat(full) + '☆'.repeat(5-full);
 }
 
-// Which product IDs are actually ready to ship right now.
-// Add more IDs here later as you get real stock for other products —
-// everything NOT listed here shows as "Coming Soon" instead of a working buy button.
-const AVAILABLE_PRODUCT_IDS = ["p1"];
+// Per-product status. This drives the badge, whether the price/button
+// actually works, and any real sales numbers you want to show.
+// status: "instock" | "outofstock" | "comingsoon" | "newarrival"
+// orderable: true = "View Product" is a working link to product.html
+//            false = button is disabled, nobody can place an order for it
+const PRODUCT_STATUS = {
+  p1: { status: "instock",    orderable: true  }, // your real wallet
+  p2: { status: "outofstock", orderable: false, topBadge: "Top Sale", soldCount: 1560 }, // real sales from your store, currently out of stock
+  p3: { status: "instock",    orderable: true  }, // orders taken, sourced after
+  p4: { status: "instock",    orderable: true  }, // orders taken, sourced after
+  p5: { status: "comingsoon", orderable: false },
+  p6: { status: "instock",    orderable: true  },
+  p7: { status: "newarrival", orderable: true  },
+  p8: { status: "newarrival", orderable: true  }
+};
 
-// ---- Render the featured showcase banner ----
+const STATUS_LABELS = {
+  instock: "In Stock",
+  outofstock: "Out of Stock",
+  comingsoon: "Coming Soon",
+  newarrival: "New Arrival"
+};
+const STATUS_BADGE_CLASS = {
+  instock: "badge-stock",
+  outofstock: "badge-outofstock",
+  comingsoon: "badge-comingsoon",
+  newarrival: "badge-newarrival"
+};
+
+// ---- Render the featured showcase banner (always your lead/first product) ----
 function renderFeaturedProduct(){
   const wrap = document.getElementById('featuredProduct');
   if(!wrap) return;
 
-  const p = PRODUCTS.find(prod => AVAILABLE_PRODUCT_IDS.includes(prod.id));
+  const p = PRODUCTS.find(prod => prod.id === "p1");
   if(!p) return;
 
   const img = (p.images && p.images.length > 0) ? p.images[0] : p.image;
@@ -65,30 +89,39 @@ function renderFeaturedProduct(){
   `;
 }
 
-// ---- Render product grid on homepage ----
+// ---- Render product grid on homepage (p1 included, in order) ----
 function renderProductGrid(){
   const grid = document.getElementById('productGrid');
   if(!grid) return;
 
-  // Everything except the featured/available product(s) shows here as "Coming Soon"
-  PRODUCTS.filter(p => !AVAILABLE_PRODUCT_IDS.includes(p.id)).forEach(p => {
+  PRODUCTS.forEach(p => {
+    const cfg = PRODUCT_STATUS[p.id] || { status: "comingsoon", orderable: false };
     const card = document.createElement('div');
-    card.className = 'card coming-soon';
+    card.className = 'card' + (cfg.orderable ? '' : ' coming-soon');
 
     const imageContent = p.image
       ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;">`
       : `🛍️`;
 
+    const priceHTML = p.discountPercent
+      ? `<span class="cprice">৳${p.price}</span> <span class="strike">৳${p.originalPrice}</span>`
+      : `<span class="cprice">${p.price > 0 ? '৳' + p.price : 'Price coming soon'}</span>`;
+
+    const soldText = cfg.soldCount ? ` <span class="count">· ${cfg.soldCount.toLocaleString()} sold</span>` : '';
+
     card.innerHTML = `
       <div class="img-box">
-        <span class="badge-comingsoon">Coming Soon</span>
+        ${cfg.topBadge ? `<span class="badge-top">${cfg.topBadge}</span>` : (p.discountPercent ? `<span class="badge-discount">${p.discountPercent}% OFF</span>` : '')}
+        <span class="${STATUS_BADGE_CLASS[cfg.status]}">${STATUS_LABELS[cfg.status]}</span>
         ${imageContent}
       </div>
       <div class="cbody">
         <div class="cname">${p.name}</div>
-        <div class="stars">${starString(p.rating)} <span class="count">(${p.reviews})</span></div>
-        <div class="price-row"><span class="cprice">Coming Soon</span></div>
-        <span class="view-btn disabled">Not Available Yet</span>
+        <div class="stars">${starString(p.rating)} <span class="count">(${p.reviews})</span>${soldText}</div>
+        <div class="price-row">${priceHTML}</div>
+        ${cfg.orderable
+          ? `<a class="view-btn" href="product.html?id=${p.id}">View Product</a>`
+          : `<span class="view-btn disabled">Not Available Yet</span>`}
       </div>
     `;
     grid.appendChild(card);
