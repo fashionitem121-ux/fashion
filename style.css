@@ -149,6 +149,10 @@ footer{ margin-top:36px; border-top:1px solid var(--line); padding:30px 20px 40p
   position:absolute; top:8px; right:8px; background:#E0245E; color:#fff;
   font-size:9px; font-weight:700; text-transform:uppercase; padding:4px 8px; border-radius:100px;
 }
+.badge-newarrival{
+  position:absolute; top:8px; right:8px; background:#6C5CE7; color:#fff;
+  font-size:9px; font-weight:700; text-transform:uppercase; padding:4px 8px; border-radius:100px;
+}
 .view-btn.disabled{
   background:var(--surface-2); color:var(--muted); pointer-events:none; cursor:default;
 }
