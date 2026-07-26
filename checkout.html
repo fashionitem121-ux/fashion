@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Fashion.Items</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700;800&family=Hind+Siliguri:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '3463779380454816');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=3463779380454816&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="topnav">
+    <div class="logo">Fashion<span>.</span>Items</div>
+  </nav>
+
+  <a href="#" id="backLink" class="back-link">← Back to product</a>
+
+  <div id="checkoutView">
+    <div class="checkout-title">Checkout</div>
+
+    <div class="checkout-layout">
+
+      <!-- LEFT: Billing Details -->
+      <div class="checkout-card">
+        <h2>Billing Details</h2>
+
+        <label class="field-label">Full Name <span style="color:#E0245E;">*</span></label>
+        <input type="text" id="fName" placeholder="আপনার নাম">
+
+        <label class="field-label">Mobile Number <span style="color:#E0245E;">*</span></label>
+        <input type="tel" id="fPhone" placeholder="+880 01xxx-xxxxxx">
+
+        <label class="field-label">Address <span style="color:#E0245E;">*</span></label>
+        <textarea id="fAddress" placeholder="থানা: ..., জেলা: ..."></textarea>
+
+        <label class="field-label">Email <span class="optional-tag">(optional)</span></label>
+        <input type="text" id="fEmail" placeholder="demo@gmail.com">
+
+        <label class="field-label">Order Notes <span class="optional-tag">(optional)</span></label>
+        <textarea id="fNotes" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+
+        <h2 style="margin-top:22px;">Shipping</h2>
+        <div class="shipping-options" id="shippingOptions">
+          <div class="shipping-opt active" data-area="Outside Dhaka" data-cost="130">
+            <div class="so-left"><div class="shipping-radio-dot"></div> Outside Dhaka (All Bangladesh)</div>
+            <div class="so-price">৳130</div>
+          </div>
+          <div class="shipping-opt" data-area="Inside Dhaka" data-cost="110">
+            <div class="so-left"><div class="shipping-radio-dot"></div> Inside Dhaka</div>
+            <div class="so-price">৳110</div>
+          </div>
+        </div>
+
+        <div class="error-msg" id="errorMsg">Please fill in your name, phone, and address.</div>
+      </div>
+
+      <!-- RIGHT: Order Summary -->
+      <div class="checkout-card">
+        <h2>Your Order</h2>
+
+        <div class="order-item">
+          <img id="oiImage" src="" alt="">
+          <div>
+            <div class="order-item-name" id="oiName">Loading...</div>
+            <div class="order-item-meta" id="oiMeta"></div>
+          </div>
+          <div class="order-item-sub" id="oiSubtotal">৳0</div>
+        </div>
+
+        <div class="summary-row"><span>Shipping</span><span id="sumShipping">৳130</span></div>
+        <div class="summary-row total"><span>Total</span><span id="sumTotal">৳0</span></div>
+
+        <h2 style="margin-top:18px;">Payment Method</h2>
+        <div class="payment-box">
+          <div class="po-title"><span class="po-dot"></span> Cash on Delivery</div>
+          <div class="po-note">Pay with cash upon delivery.</div>
+        </div>
+
+        <div class="privacy-note">
+          Your personal data will be used to process your order and support your experience on this site. We never share it with anyone else.
+        </div>
+
+        <button class="cta-btn" id="placeOrderBtn">Place Order — <span id="btnTotal">৳0</span></button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- THANK YOU VIEW -->
+  <div id="thankYouView" style="display:none; padding:40px 20px;">
+    <div class="thankyou-box">
+      <div class="thankyou-icon">✅</div>
+      <div class="thankyou-title">Thank you!</div>
+      <div class="thankyou-text" id="thankYouText">We've received your order. We'll call you shortly to confirm before shipping.</div>
+      <a href="index.html" class="cta-btn" style="display:block; text-decoration:none; text-align:center;">Continue Shopping</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-name">Fashion<span>.</span>Items</div>
+      <div class="social-row">
+        <a href="#" title="Facebook">📘</a>
+        <a href="#" title="Instagram">📷</a>
+        <a href="#" title="TikTok">🎵</a>
+      </div>
+      <div class="footer-line">💬 <b>24/7 Support on WhatsApp:</b> +880 1540-663054</div>
+      <div class="footer-line">📍 <b>Shop Location:</b> Sylhet, Zindabazar, Sylhet, Bangladesh</div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="products-data.js"></script>
+<script src="checkout.js"></script>
+</body>
+</html>
