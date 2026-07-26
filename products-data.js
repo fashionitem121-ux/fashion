@@ -23,12 +23,13 @@
 const PRODUCTS = [
   {
     id: "p1",
-    name: "Trendy Korean Long Wallet",
-    price: 599,
-    originalPrice: 1090,
+    name: "Trendy Korean Long Purses",
+    price: 500,
+    originalPrice: 990,
     discountPercent: 45,
     rating: 4.5,
     reviews: 12,
+    soldCount: 390, // <--- Add this line with your actual sales count
     topSale: true,
     inStock: true,
     image: "Screenshot_20260717_202538_skybuy_becommerce_com_bd_MainActivity_edit_263601303684864.jpg",
