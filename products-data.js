@@ -55,7 +55,7 @@ const PRODUCTS = [
   },
   {
     id: "p2",
-    name: "Premium Fashion Item 2",
+    name: "Sparkle Zip Wristlet Wallet",
     price: 750,
     rating: 4.2,
     reviews: 8,
@@ -70,13 +70,14 @@ const PRODUCTS = [
     reviews: []
   },
   {
-    id: "p3",
-    name: "Premium Fashion Item 3",
-    price: 2999,
-    rating: 4.8,
-    reviews: 21,
-    topSale: false,
-    inStock: true,
+  id: "p3",
+  name: "Gold Handle Evening Clutch",
+  price: 2999,
+  rating: 4.8,
+  reviews: 21,
+  soldCount: 250, // <--- Add your sales number here
+  topSale: false,
+  inStock: true,
     image: "Screenshot_20260718_001100_skybuy_becommerce_com_bd_MainActivity_edit_229049832489651.jpg",
     images: [
       "Screenshot_20260718_001100_skybuy_becommerce_com_bd_MainActivity_edit_229049832489651.jpg"
@@ -87,10 +88,11 @@ const PRODUCTS = [
   },
   {
     id: "p4",
-    name: "Premium Fashion Item 4",
+    name: "Pearl Embroidered Chain Tote",
     price: 5000,
     rating: 4.0,
     reviews: 5,
+    soldCount: 9, // <--- Add your sales number here
     topSale: false,
     inStock: true,
     image: "Screenshot_20260718_001218_skybuy_becommerce_com_bd_MainActivity_edit_229026798921342.jpg",
@@ -103,7 +105,7 @@ const PRODUCTS = [
   },
   {
     id: "p5",
-    name: "Premium Fashion Item 5",
+    name: "Classic Buckle Saddle Crossbody",
     price: 450,
     rating: 4.6,
     reviews: 14,
@@ -119,10 +121,11 @@ const PRODUCTS = [
   },
   {
     id: "p6",
-    name: "Premium Fashion Item 6",
-    price: 520,
+    name: "Signature Print Shoulder Bag",
+    price: 1600,
     rating: 4.3,
     reviews: 9,
+    soldCount: 23, // <--- Add your sales number here
     topSale: false,
     inStock: true,
     image: "Screenshot_20260718_003739_skybuy_becommerce_com_bd_MainActivity_edit_230607704237821.jpg",
@@ -136,9 +139,9 @@ const PRODUCTS = [
   {
     id: "p7",
     name: "Premium Fashion Item 7",
-    price: 680,
-    rating: 4.7,
-    reviews: 17,
+    price: 00,
+    rating: 0,
+    reviews: 0,
     topSale: false,
     inStock: true,
     image: "Screenshot_20260718_003657_skybuy_becommerce_com_bd_MainActivity_edit_230583500932512.jpg",
@@ -152,9 +155,9 @@ const PRODUCTS = [
   {
     id: "p8",
     name: "Premium Fashion Item 8",
-    price: 390,
-    rating: 4.1,
-    reviews: 6,
+    price: 0.0,
+    rating: 0.0,
+    reviews: 0,
     topSale: false,
     inStock: true,
     image: "Screenshot_20260718_003624_skybuy_becommerce_com_bd_MainActivity_edit_230560730158049.jpg",
