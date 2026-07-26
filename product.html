@@ -56,7 +56,7 @@ src="https://www.facebook.com/tr?id=3463779380454816&ev=PageView&noscript=1"
 
   <!-- 2x2 layout matching the sketch:
        top-left = images, top-right = price/buy,
-       bottom-left = description, bottom-right = reviews -->
+       bottom-left = description, bottom-right = delivery info -->
   <div class="product-layout">
 
     <!-- TOP LEFT: product images -->
@@ -86,7 +86,15 @@ src="https://www.facebook.com/tr?id=3463779380454816&ev=PageView&noscript=1"
           <div class="colour-label">Choose Colour</div>
           <div class="colour-options" id="colourOptions"></div>
         </div>
-        <button class="buy-btn" id="buyBtn">Buy Now</button>
+
+        <div class="colour-label" style="margin-top:14px;">Quantity</div>
+        <div class="qty-row">
+          <button type="button" class="qty-btn" id="qtyMinus">−</button>
+          <div class="qty-val" id="qtyVal">1</div>
+          <button type="button" class="qty-btn" id="qtyPlus">+</button>
+        </div>
+
+        <a class="buy-btn" id="buyBtn" href="#">Buy Now</a>
       </div>
     </div>
 
@@ -96,10 +104,13 @@ src="https://www.facebook.com/tr?id=3463779380454816&ev=PageView&noscript=1"
       <div id="descBox"></div>
     </div>
 
-    <!-- BOTTOM RIGHT: real customer reviews -->
+    <!-- BOTTOM RIGHT: delivery info -->
     <div class="pcell">
-      <div class="pcell-title">Real Customer Reviews</div>
-      <div id="reviewBox"></div>
+      <div class="pcell-title">Delivery Info</div>
+      <div class="detail-row"><span>🏠</span><span class="d"><b>Inside Dhaka:</b> ৳110 delivery charge</span></div>
+      <div class="detail-row"><span>🇧🇩</span><span class="d"><b>Outside Dhaka (all Bangladesh):</b> ৳130 delivery charge</span></div>
+      <div class="detail-row"><span>💵</span><span class="d"><b>Payment:</b> Cash on Delivery — pay when it arrives</span></div>
+      <div class="detail-row"><span>🚚</span><span class="d"><b>Dispatch:</b> Booked same day via Steadfast / Pathao</span></div>
     </div>
 
   </div>
@@ -117,59 +128,6 @@ src="https://www.facebook.com/tr?id=3463779380454816&ev=PageView&noscript=1"
     </div>
   </footer>
 
-</div>
-
-<!-- ORDER MODAL -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal-box">
-    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
-
-    <div id="modalFormView">
-      <div class="modal-title">Complete Your Order</div>
-      <div class="modal-product-line" id="modalProductLine"></div>
-
-      <label class="field-label">Quantity</label>
-      <div class="qty-row">
-        <button type="button" class="qty-btn" id="qtyMinus">−</button>
-        <div class="qty-val" id="qtyVal">1</div>
-        <button type="button" class="qty-btn" id="qtyPlus">+</button>
-      </div>
-
-      <label class="field-label">Name</label>
-      <input type="text" id="fName" placeholder="Your full name">
-
-      <label class="field-label">Phone</label>
-      <input type="tel" id="fPhone" placeholder="01XXXXXXXXX">
-
-      <label class="field-label">City</label>
-      <input type="text" id="fCity" placeholder="e.g. Sylhet, Dhaka, Chattogram">
-
-      <label class="field-label">Address</label>
-      <textarea id="fAddress" placeholder="House, road, area"></textarea>
-
-      <label class="field-label">Discount Coupon <span class="optional-tag">(optional)</span></label>
-      <input type="text" id="fCoupon" placeholder="Enter code if you have one">
-
-      <div class="modal-total-row">
-        <span>Total</span>
-        <span id="modalTotal">৳0</span>
-      </div>
-
-      <div class="error-msg" id="errorMsg">Please fill in your name, phone, city, and address.</div>
-
-      <button class="cta-btn" id="submitOrderBtn">Confirm Order</button>
-    </div>
-
-    <div id="modalThankYouView" style="display:none;">
-      <div class="thankyou-box">
-        <div class="thankyou-icon">✅</div>
-        <div class="thankyou-title">Thank you!</div>
-        <div class="thankyou-text">We've received your order. We'll call you shortly to confirm before shipping.</div>
-        <button class="cta-btn" id="closeThankYouBtn">Close</button>
-      </div>
-    </div>
-
-  </div>
 </div>
 
 <script src="products-data.js"></script>
